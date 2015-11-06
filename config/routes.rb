@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  get 'purchased_item/item_id:integer'
-
-  get 'purchased_item/purchase_id:integer'
-
-  get 'purchased_item/buyer_id:integer'
-
-  get 'purchased_item/redeemer_id:integer'
-
-  get 'purchased_item/is_redeemed:boolean'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
