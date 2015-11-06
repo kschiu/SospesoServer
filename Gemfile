@@ -1,40 +1,48 @@
 source 'https://rubygems.org'
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
-# Use Uglifier as compressor for JavaScript assets
+gem 'rails', '4.2.4'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer',  platforms: :ruby
-
-# Use jquery as the JavaScript library
+gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'jquery-ui-rails'
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+gem 'hairtrigger'
+gem 'validates_timeliness', '~> 3.0'
+
+gem 'turbolinks', '~> 2.5.3'
+gem "font-awesome-rails", '~> 4.4.0.0'
+gem 'foundation-rails', '~> 5.5.3.2'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Use unicorn as the app server
+# Use Unicorn as the app server
 # gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+# Gems used only in testing
+group :test do
+  gem 'factory_girl_rails'
+  gem "minitest-reporters"
+#  gem 'tconsole', git: 'git@github.com:ulmic/tconsole.git', branch: 'rails4'
+  gem 'shoulda'
+end
 
+group :development, :test do
+  gem 'sqlite3'
+  gem 'colored'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'meta_request'
+  gem 'wirble'
+  gem 'hirb'
+  gem 'thin'
+  gem 'spring'
+  gem 'populator3'
+  gem 'faker'
+  gem 'factory_girl'
+  # gem 'rails-erd' # requires Graphviz library to be installed
+end
