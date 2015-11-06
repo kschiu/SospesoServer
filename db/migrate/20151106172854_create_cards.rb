@@ -5,8 +5,7 @@ class CreateCards < ActiveRecord::Migration
       t.string :card_number
       t.string :holder_name
       t.string :zip_code
-      t.string :expiration_month
-      t.string :expiration_year
+      t.date :expiration_date
       t.string :csv_code
 
       t.timestamps
