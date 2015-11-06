@@ -1,6 +1,6 @@
 class Purchase < ActiveRecord::Base
   #relationships
-  has_one :card
+  belongs_to :card
   belongs_to :user
 
   #validations

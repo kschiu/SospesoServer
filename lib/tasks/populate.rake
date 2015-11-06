@@ -31,7 +31,8 @@ namespace :db do
     end
 
     # Fake Cards
-    for i in 0..12
+    num_cards = 12
+    for i in 0..num_cards
       card = Card.new
       # some people with multiple cards, some without any
       card.user_id = rand(1..num_users-1)
@@ -45,7 +46,17 @@ namespace :db do
 
     # Fake Purchases
     for i in 0..20
-
+      p = Purchase.new
+      p.user_id = rand(1..num_users-1)
+      rand_user = User.find_by_id(p.user_id)
+      cards = rand_user.cards.map{ |c| c.id }
+      while cards.length == 0
+        p.user_id = rand(1..num_users-1)
+        rand_user = User.find_by_id(p.user_id)
+        cards = rand_user.cards.map{ |c| c.id }
+      end
+      p.card_id = cards[rand(0..cards.length-1)]
+      p.save!
     end
   end
 end
