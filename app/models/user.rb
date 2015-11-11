@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   #relationships
   has_many :purchases
   has_many :cards
+  has_many :purchased_items, :class_name => "PurchasedItem", :foreign_key => "buyer_id"
+  has_many :redemptions, :class_name => "PurchasedItem", :foreign_key => "redeemer_id"
 
   #validations
   validates :first_name, :last_name, presence: true
