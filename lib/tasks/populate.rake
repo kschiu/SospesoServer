@@ -16,12 +16,12 @@ namespace :db do
     require 'faker'
 
     # Step 1: clear any old data in the db
-    [User].each(&:delete_all)
+    [User, Card, Purchase, Store, Item, PurchasedItem].each(&:delete_all)
 
     # Step 2: Add in fake data
     # Fake Users
     num_users = 10
-    for i in 0..num_users
+    for i in 1..num_users
       user = User.new
       user.first_name = Faker::Name.first_name
       user.last_name = Faker::Name.last_name
@@ -31,7 +31,8 @@ namespace :db do
     end
 
     # Fake Cards
-    for i in 0..12
+    num_cards = 12
+    for i in 1..num_cards
       card = Card.new
       # some people with multiple cards, some without any
       card.user_id = rand(1..num_users-1)
@@ -44,8 +45,56 @@ namespace :db do
     end
 
     # Fake Purchases
-    for i in 0..20
+    num_purchases = 20
+    for i in 1..num_purchases
+      p = Purchase.new
+      p.user_id = rand(1..num_users-1)
+      rand_user = User.find_by_id(p.user_id)
+      cards = rand_user.cards.map{ |c| c.id }
+      while cards.length == 0
+        p.user_id = rand(1..num_users-1)
+        rand_user = User.find_by_id(p.user_id)
+        cards = rand_user.cards.map{ |c| c.id }
+      end
+      p.card_id = cards[rand(0..cards.length-1)]
+      p.save!
+    end
 
+    # Fake Stores
+    num_stores = 4
+    for i in 1..num_stores
+      store = Store.new
+      store.name = Faker::Company.name
+      store.zip = Faker::Address.postcode[0..4] # only want five digit zips
+      store.save!
+    end
+
+    # Fake Items
+    num_items = 15
+    for i in 1..num_items
+      item = Item.new
+      item.store_id = rand(1..4) # want to keep one store with no items
+      item.name = Faker::Commerce.product_name
+      item.price = rand(1..20)
+      item.save!
+    end
+
+    # Fake PurchasedItems
+    num_purchased_items = 30
+    for i in 1..num_purchased_items
+      p_item = PurchasedItem.new
+      p_item.item_id = rand(1..12) # leave some items that haven't been purchased
+      p_item.purchase_id = rand(1..num_purchases)
+      # the buyer_id should match the user_id from the purchase
+      purchase = Purchase.find_by_id(p_item.purchase_id)
+      p_item.buyer_id = purchase.user_id
+      # a user shouldn't be able to buy himself a coffee
+      p_item.redeemer_id = rand(1..num_users)
+      while p_item.buyer_id == p_item.redeemer_id
+        p_item.redeemer_id = rand(1..num_users)
+      end
+      p_item.is_redeemed = rand(0..1) == 1 ? true : false
+      p_item.save!
     end
   end
 end
