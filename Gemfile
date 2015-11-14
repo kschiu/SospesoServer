@@ -24,6 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'puma'
+gem 'pg', '~> 0.18.3', group: [:production, :development]
 
 # Gems used only in testing
 group :test do
@@ -52,4 +53,8 @@ group :development, :test do
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
   # gem 'rails-erd' # requires Graphviz library to be installed
+end
+
+group :production do
+  gem 'sqlite3'
 end
