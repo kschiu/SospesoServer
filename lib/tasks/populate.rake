@@ -16,7 +16,7 @@ namespace :db do
     require 'faker'
 
     # Step 1: clear any old data in the db
-    [User, Card, Purchase, Store, Item, PurchasedItem].each(&:delete_all)
+    # [User, Card, Purchase, Store, Item, PurchasedItem].each(&:delete_all)
 
     # Step 2: Add in fake data
     # Fake Users
