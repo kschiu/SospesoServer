@@ -23,6 +23,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'puma'
+gem 'pg', '~> 0.18.3', group: [:production, :development]
+
 # Gems used only in testing
 group :test do
   gem 'factory_girl_rails'
@@ -44,5 +47,14 @@ group :development, :test do
   gem 'populator3'
   gem 'faker'
   gem 'factory_girl'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
   # gem 'rails-erd' # requires Graphviz library to be installed
+end
+
+group :production do
+  gem 'sqlite3'
 end
