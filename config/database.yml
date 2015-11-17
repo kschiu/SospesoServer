@@ -34,4 +34,6 @@ production:
   host: localhost
   encoding: unicode
   pool: 5
-  database: db/production.sqlite3
+  database: test1
+  username: postgres
+  password:

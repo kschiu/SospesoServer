@@ -48,7 +48,7 @@
 # end
 
 # Change these
-server '192.241.168.227', port: 22, roles: [:web, :app, :db], primary: true
+server '192.241.168.227', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:bklam/SospesoServer.git'
 set :application,     'SospesoServer'
