@@ -11,7 +11,7 @@ module Api
     class ApiController < ApplicationController
       # Allow POST request to be made from another application.
       # No CSRF concern, since the post request includes API key credentials.
-      # skip_before_filter :verify_authenticity_token
+      skip_before_filter :verify_authenticity_token
       
       # Validate and fetch the key data before processing the API request.
       # before_filter :verify_access_with_api_key
