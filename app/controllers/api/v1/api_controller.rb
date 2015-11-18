@@ -1,9 +1,9 @@
 # use POST via HTTPS
 # symlink protected
 # double handshake
-# module Api
+module Api
   # Holds the first version of the API controller.
-  # module V1
+  module V1
     # This controller is in a API/v1 folder to allow for
     # for future versions of the API to coexist with this one in the future.
     # Changes are not expected, but this would allow for changes to be more easily
@@ -81,5 +81,5 @@
       #   end
       # end
     end
-  # end
-# end
+  end
+end
