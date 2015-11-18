@@ -11,7 +11,7 @@
     class ApiController < ApplicationController
       # Allow POST request to be made from another application.
       # No CSRF concern, since the post request includes API key credentials.
-      skip_before_filter :verify_authenticity_token
+      # skip_before_filter :verify_authenticity_token
       
       # Validate and fetch the key data before processing the API request.
       # before_filter :verify_access_with_api_key
@@ -21,7 +21,7 @@
         # if the endpoint is the demo endpoint for checking credentials,
         # just return a straightforward success response
         # if params[:endpoint] == "demo_endpoint"
-        render json: {"message" => "Success! You've made an API request with valid credentials!"}
+        render json: {"message" => params[:endpoint]}
         # else
         #   # If the params POSTed are not a valid combination of filters to use, i
         #   # the "request" will fail.
