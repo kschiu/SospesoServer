@@ -21,8 +21,9 @@ module Api
         # if the endpoint is the demo endpoint for checking credentials,
         # just return a straightforward success response
         # if params[:endpoint] == "demo_endpoint"
-        render json: JSON(User.all), status: 200
-        # render json: {"message" => params[:endpoint]}
+        # render json: JSON(User.all), status: 200
+        puts JSON(User.all)
+        render json: {"message" => params[:endpoint]}
         # else
         #   # If the params POSTed are not a valid combination of filters to use, i
         #   # the "request" will fail.
