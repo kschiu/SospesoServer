@@ -1,0 +1,2 @@
+class EndpointResponse
+end
