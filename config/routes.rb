@@ -4,6 +4,19 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'home', to: 'home#index', as: :home
 
+  # routes for the api and respective versions
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      post ':endpoint' => 'api#index', controller: 'api'
+    end
+
+    # in the future, we can simply do
+    # namespace :v2 do
+    #   resources :user
+    # end
+    # etc. for each endpoint
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

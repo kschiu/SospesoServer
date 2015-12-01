@@ -26,6 +26,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 gem 'pg', '~> 0.18.3', group: [:production, :development]
 
+gem 'populator3'
+gem 'faker'
+gem 'hirb'
+
 # Gems used only in testing
 group :test do
   gem 'factory_girl_rails'
@@ -41,11 +45,8 @@ group :development, :test do
   gem 'better_errors'
   gem 'meta_request'
   gem 'wirble'
-  gem 'hirb'
   gem 'thin'
   gem 'spring'
-  gem 'populator3'
-  gem 'faker'
   gem 'factory_girl'
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
