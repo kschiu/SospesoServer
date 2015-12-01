@@ -27,7 +27,12 @@ module Api
         puts a
         request = EndpointRequest.new(params)
         unless request.failed
-          render json: {"message" => params[:endpoint], "data" => User.all}
+          response = EndpointResponse.new(params)
+          unless response.failed
+            render json: { "endpoint" => params[:endpoint], "data" => response}, status: 200
+          else
+            render json: { "message" => request.failed }
+          end
         else
           render json: {"message" => request.failed}
         end
