@@ -23,6 +23,8 @@ module Api
         # if params[:endpoint] == "demo_endpoint"
         # render json: JSON(User.all), status: 200
         # puts JSON(User.all)
+        a = User.all
+        puts a
         render json: {"message" => params[:endpoint]}
         # else
         #   # If the params POSTed are not a valid combination of filters to use, i
