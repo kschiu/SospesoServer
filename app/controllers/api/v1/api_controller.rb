@@ -25,7 +25,7 @@ module Api
         # puts JSON(User.all)
         a = User.all
         puts a
-        render json: {"message" => params[:endpoint]}
+        render json: {"message" => params[:endpoint], "data" => User.all}
         # else
         #   # If the params POSTed are not a valid combination of filters to use, i
         #   # the "request" will fail.
