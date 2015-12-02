@@ -3,12 +3,9 @@ class EndpointResponse
 
   def initialize(params)
     @object = params[:endpoint].singularize.classify.constantize.all
-    # puts "nigga"
     @data = @object
     puts @data
-    # puts "wtf"
     @failed = nil
-    # puts "fuck this shit"
     return @data
 
     # endpoint = params[:endpoint]
