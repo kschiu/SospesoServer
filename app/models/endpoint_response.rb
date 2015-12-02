@@ -11,7 +11,7 @@ class EndpointResponse
         @data = User.where('id = ?', 3)
       else
         # params[:related_endpoint].singularize.classify.constantize
-        @data = User.where('id = ?', 4).
+        @data = User.where('id = ?', 4)
       end
       @failed = nil
     when "purchases"
