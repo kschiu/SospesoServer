@@ -33,7 +33,7 @@ module Api
             render json: response, status: 200
             # render json: { "endpoint" => params[:endpoint], "data" => response.data}, status: 200
           else
-            render json: { "message" => request.failed }
+            render json: { "message" => response.failed }
           end
         else
           render json: {"message" => request.failed}
