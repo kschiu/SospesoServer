@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       get ':endpoint' => 'api#index', controller: 'api'
       post ':endpoint' => 'api#index', controller: 'api'
+
+      get ':endpoint/:id/purchases' => 'api#index', controller: 'api'
     end
 
     # in the future, we can simply do
