@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get ':endpoint' => 'api#index', controller: 'api'
       post ':endpoint' => 'api#index', controller: 'api'
 
+      get ':endpoint/:id' => 'api#index', controller: 'api'
       get ':endpoint/:id/:related_endpoint' => 'api#index', controller: 'api'
     end
 

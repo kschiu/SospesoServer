@@ -23,11 +23,16 @@ module Api
         # if params[:endpoint] == "demo_endpoint"
         # render json: JSON(User.all), status: 200
         # puts JSON(User.all)
+        puts params[:endpoint]
+        puts params[:id]
+        puts params[:related_endpoint]
         request = EndpointRequest.new(params)
         unless request.failed
           response = EndpointResponse.new(params)
           unless response.failed
+            puts "nigga bitch"
             render json: response, status: 200
+            puts "wtf is going on"
             # render json: { "endpoint" => params[:endpoint], "data" => response.data}, status: 200
           else
             render json: { "message" => request.failed }
