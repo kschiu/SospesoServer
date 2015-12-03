@@ -3,7 +3,7 @@ class Purchase < ActiveRecord::Base
   belongs_to :card
   belongs_to :user
   has_many :purchased_items
-  has_many :items, through: :purchased_item
+  has_many :items, through: :purchased_items
 
   # Scopes
 
