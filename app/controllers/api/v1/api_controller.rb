@@ -14,7 +14,7 @@ module Api
       skip_before_filter :verify_authenticity_token
       
       # Validate and fetch the key data before processing the API request.
-      before_filter :verify_access_with_api_key
+      # before_filter :verify_access_with_api_key
 
       # Used to process all API requests. 
       def index
