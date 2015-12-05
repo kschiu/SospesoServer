@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get ':endpoint/:id/:related_endpoint' => 'api#index', controller: 'api'
 
       post 'cards' => 'card#create', controller: 'card'
+      post 'createPurchase' => 'purchase#create', controller: 'purchase'
     end
 
     # in the future, we can simply do
