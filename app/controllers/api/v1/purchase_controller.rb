@@ -6,14 +6,17 @@ module Api
 			def create
 				@purchase = Purchase.new(user_id: params[:user_id],
 																 card_id: params[:card_id])
-				@purchased_item = PurchasedItem.new(
+				#save purchase first so it has an ID
+				if @purchase.save 
+					@purchased_item = PurchasedItem.new(
 														item_id: params[:item_id],
 														purchase_id: @purchase.id,
 														buyer_id: params[:buyer_id],
 														redeemer_id: params[:redeemer_id],
 														is_redeemed: params[:is_redeemed])
-				if @purchase.save && @purchased_item.save
-					render json: {"message" => "Successfully added purchased"}
+					if @purchased_item.save
+						render json: {"message" => "Successfully added purchased"}
+					end
 				else
 					render json: {"message" => "Failed to purchase"}
 				end
