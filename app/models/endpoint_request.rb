@@ -8,7 +8,7 @@ class EndpointRequest
   end
 
   def valid?
-    endpoints = ["users", "purchases", "cards", "stores", "purchased_items", "items"]
+    endpoints = ["users", "purchases", "cards", "stores", "purchased_items", "items", "login"]
     return endpoints.include?(@endpoint)
   end
 end

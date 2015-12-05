@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
       post 'cards' => 'card#create', controller: 'card'
       post 'createPurchase' => 'purchase#create', controller: 'purchase'
+      post ':endpoint/:id/:related_endpoint' => 'api#index', controller: 'api'
     end
 
     # in the future, we can simply do
