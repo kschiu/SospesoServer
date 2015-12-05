@@ -14,7 +14,7 @@ module Api
       skip_before_filter :verify_authenticity_token
       
       # Validate and fetch the key data before processing the API request.
-      # before_filter :verify_access_with_api_key
+      before_filter :verify_access_with_api_key
 
       # Used to process all API requests. 
       def index
@@ -23,9 +23,6 @@ module Api
         # if params[:endpoint] == "demo_endpoint"
         # render json: JSON(User.all), status: 200
         # puts JSON(User.all)
-        puts params[:endpoint]
-        puts params[:id]
-        puts params[:related_endpoint]
         request = EndpointRequest.new(params)
         unless request.failed
           response = EndpointResponse.new(params)
@@ -59,43 +56,32 @@ module Api
         # end
       end
       
-      # private
-      # # Returns whether the passed-in api_key exists in our system,
-      # # and is confirmed/not expired/active.
-      # # Also sets @user_key to the key it finds, if it finds one.
-      # #
-      # # @param api_key [String] A potential key value.
-      # # @param andrew_id [String] A potential CMU andrew id.
-      # # @return [Boolean] True iff a valid ke was found.
-      # def key_matches?(api_key, andrew_id)
-      #   # This is safe to do, because all andrew_ids are guaranteed to be unique.
-      #   @cur_user = User.find_by_andrew_id(andrew_id)
-      #   if @cur_user
-      #     # Find the user key that belngs to the given API number.
-      #     for key in @cur_user.user_keys.active.not_expired.confirmed
-      #       if key.gen_api_key == api_key
-      #         @user_key = key
-      #         return true
-      #       end
-      #     end
-      #   end
-      #   return false
-      # end
+      private
+      # Returns whether the passed-in api_key exists in our system,
+      # and is confirmed/not expired/active.
+      def key_matches?(api_key)
+        puts "the passed in api_key is"
+        puts api_key
+        puts "the settings hash is"
+        puts SETTINGS
+        puts "the settings hash api key is"
+        puts SETTINGS[:api_key]
+        return api_key == SETTINGS[:api_key]
+      end
 
-      # # Used in the before_filter callback to verify whether or not
-      # # the api key and andrew ID passed in.
-      # def verify_access_with_api_key
-      #   api_key   = request.headers["HTTP_API_KEY"]
-      #   andrew_id = request.headers["HTTP_ANDREW_ID"]
-      #   if (api_key.nil? || andrew_id.nil?)
-      #     render json: {error: "Error, bad request"}, status: 400
-      #   elsif !(key_matches?(api_key, andrew_id))
-      #     render json: {error: "Error, unauthorized user or API key"}, status: 401
-      #   # Inactive users are not allowed to use their keys for any reason.
-      #   elsif !@cur_user.active
-      #     render json: {error: "Error, the account associated with this andrew ID has been suspended"}, status: 401
-      #   end
-      # end
+      # Used in the before_filter callback to verify whether or not
+      # the api key and andrew ID passed in.
+      def verify_access_with_api_key
+        # grab the api key from the post request headers
+        api_key   = request.headers["HTTP_API_KEY"]
+        andrew_id = request.headers["HTTP_ANDREW_ID"]
+        if (api_key.nil?)
+          render json: {error: "Error, bad request"}, status: 400
+        end
+        if !(key_matches?(api_key))
+          render json: {error: "Error, unauthorized user or API key"}, status: 401
+        end
+      end
     end
   end
 end
