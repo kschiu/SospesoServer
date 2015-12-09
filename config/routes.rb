@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       get ':endpoint' => 'api#index', controller: 'api'
-      post ':endpoint' => 'api#index', controller: 'api'
 
       get ':endpoint/:id' => 'api#index', controller: 'api'
       get ':endpoint/:id/:related_endpoint' => 'api#index', controller: 'api'
+
+      post 'cards' => 'card#create', controller: 'card'
+      post 'createPurchase' => 'purchase#create', controller: 'purchase'
       post ':endpoint/:id/:related_endpoint' => 'api#index', controller: 'api'
     end
 
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
     # end
     # etc. for each endpoint
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
