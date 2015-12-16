@@ -14,6 +14,9 @@ gem 'turbolinks', '~> 2.5.3'
 gem "font-awesome-rails", '~> 4.4.0.0'
 gem 'foundation-rails', '~> 5.5.3.2'
 
+#Gem for CORS
+gem 'rack-cors', :require => 'rack/cors'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
