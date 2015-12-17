@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       get 'itemsByRedeemer/:redeemer_id' => 'purchase#itemsByRedeemer', controller: 'purchase'
+      get 'redeem/:id' => 'redeem#redeem', controller: 'redeem'
       get ':endpoint' => 'api#index', controller: 'api'
 
       get ':endpoint/:id' => 'api#index', controller: 'api'
