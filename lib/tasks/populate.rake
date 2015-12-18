@@ -94,6 +94,7 @@ namespace :db do
         p_item.redeemer_id = rand(1..num_users)
       end
       p_item.is_redeemed = rand(0..1) == 1 ? true : false
+      p_item.message = Faker::Lorem.sentence
       p_item.save!
     end
   end

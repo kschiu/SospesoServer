@@ -47,7 +47,21 @@ class EndpointResponse
         @failed = nil
       # if there aren't any other specifications, just return all records
       else
-        @data = klass.all
+        # this is bad, sorry
+        if klass == "Item".classify.constantize
+          items = klass.all
+          stores = items.map{ |w| w.store }
+          items_json = items.as_json
+          for i in 0..items_json.length-1
+            temp_hash = items_json[i]
+            temp_hash["store_id"] = stores[i].id
+            temp_hash["store_name"] = stores[i].name
+            items_json[i] = temp_hash
+          end
+          @data = items_json
+        else 
+          @data = klass.all
+        end
         @failed = nil
       end
     end
