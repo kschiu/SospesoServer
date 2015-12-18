@@ -22,6 +22,16 @@ module Api
 				end
 			end
 
+			def itemsByRedeemer
+				@item = PurchasedItem.where(redeemer_id: params[:redeemer_id])
+				render json: {data: @item, failed: nil}
+			end	
+
+      def community
+        @item = PurchasedItem.where(redeemer_id: nil)
+        render json: {data: @item, failed: nil}
+      end 
+
 			private
 			def purchase_params
 				params.require(:purchased_items).permit(:item_id, :purchase_id, :buyer_id, :redeemer_id, :is_redeemed, :user_id, :card_id)

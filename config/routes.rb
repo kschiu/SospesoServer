@@ -7,10 +7,13 @@ Rails.application.routes.draw do
   # routes for the api and respective versions
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
+      get 'itemsByRedeemer/:redeemer_id' => 'purchase#itemsByRedeemer', controller: 'purchase'
+      get 'redeem/:id' => 'redeem#redeem', controller: 'redeem'
       get ':endpoint' => 'api#index', controller: 'api'
 
       get ':endpoint/:id' => 'api#index', controller: 'api'
       get ':endpoint/:id/:related_endpoint' => 'api#index', controller: 'api'
+
 
       post 'cards' => 'card#create', controller: 'card'
       post 'createPurchase' => 'purchase#create', controller: 'purchase'
