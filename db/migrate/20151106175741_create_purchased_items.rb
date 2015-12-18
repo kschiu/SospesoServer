@@ -6,6 +6,7 @@ class CreatePurchasedItems < ActiveRecord::Migration
       t.integer :buyer_id
       t.integer :redeemer_id
       t.boolean :is_redeemed
+      t.string :message
 
       t.timestamps
     end

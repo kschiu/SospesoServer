@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20151111190917) do
     t.integer  "buyer_id"
     t.integer  "redeemer_id"
     t.boolean  "is_redeemed"
+    t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

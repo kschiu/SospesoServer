@@ -13,7 +13,8 @@ module Api
 														purchase_id: @purchase.id,
 														buyer_id: params[:buyer_id],
 														redeemer_id: params[:redeemer_id],
-														is_redeemed: params[:is_redeemed])
+														is_redeemed: params[:is_redeemed],
+														message: params[:message])
 					if @purchased_item.save
 						render json: {"message" => "Successfully added purchased"}
 					end
